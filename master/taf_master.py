@@ -64,6 +64,9 @@ def main():
         # Predict busts and adjust data accordingly
         site_df = ba.adjust_site_df(site_df)
 
+        # Update wx again with new visibilities
+        site_df['sig_wx'] = site_df.apply(ex.update_sig_wx, axis=1)
+
         # Generate TAF
         ge.taf_gen(site_df)
 
