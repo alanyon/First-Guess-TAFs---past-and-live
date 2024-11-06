@@ -129,6 +129,7 @@ def check_periods(comb, probs_tempos):
 
     Args:
         comb (tuple): Combination of change groups
+        probs_tempos (list): All PROB/TEMPO groups
     Returns:
         new_period (list): New change period
     """
