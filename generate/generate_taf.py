@@ -119,7 +119,7 @@ def get_taf_options(becmg_options_chunk, site_data):
 
         # Optimise BECMG/TEMPO/PROB groups
         all_groups = op.optimise_groups(all_groups, site_data)
-
+        
         # Change base period
         all_groups[0]['change_period'] = base_period
 
