@@ -20,6 +20,7 @@ import warnings
 
 import common.calculations as ca
 import common.configs as co
+import data_extraction.extract_sort_data as ex
 
 # Define environment constants
 ML_DIR = os.environ['ML_DIR']
@@ -57,6 +58,9 @@ def adjust_site_df(site_df):
 
         # Update ml dataframe
         tdf = get_ml_df(site_df)
+
+    # Ensure sig wx still sensible with new visibilities - adjust if not
+    site_df['sig_wx'] = site_df.apply(ex.update_sig_wx_for_new_vis, axis=1)
 
     return site_df
 

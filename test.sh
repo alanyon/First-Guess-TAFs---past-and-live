@@ -1,5 +1,5 @@
 #!/bin/bash -l
-export TAF_START=2024110521
+export TAF_START=2024110612
 export OUT_DIR=/net/home/h04/alanyon/public_html/tafs
 export PYTHONPATH=$PYTHONPATH:~alanyon/first_guess_TAFs/past_and_live/
 export ML_DIR=/data/users/alanyon/tafs/improver/verification/20230805-20241004_ml/pickles
