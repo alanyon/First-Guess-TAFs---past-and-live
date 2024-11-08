@@ -48,8 +48,8 @@ def main():
         if site_info['rules'] == 'defence':
             continue
 
-        # FOR TESTING
-        # if site_info['icao'] != 'EGGD':
+        # # FOR TESTING
+        # if site_info['icao'] != 'EGEC':
         #     continue
 
         print(f'Processing {site_info["icao"]}...')

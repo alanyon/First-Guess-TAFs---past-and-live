@@ -165,7 +165,7 @@ def taf_gen(site_data):
         site_data (pandas.DataFrame): IMPROVER and airport data
     """
     # Print out relevant data for testing and comparing to TAF
-    wt.print_data(site_data)
+    # wt.print_data(site_data)
 
     # Get base conditions
     bases = get_base_conditions(site_data)
