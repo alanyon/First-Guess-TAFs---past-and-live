@@ -54,7 +54,7 @@ def adjust_site_df(site_df):
     for ind in range(5):
 
         # Adjust model data based on predicted bust labels
-        site_df = pred_adjust(site_df, tdf, clf_models, icao, 'random_forest')
+        site_df = pred_adjust(site_df, tdf, clf_models, icao, 'xgboost')
 
         # Update ml dataframe
         tdf = get_ml_df(site_df)
