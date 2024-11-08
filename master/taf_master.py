@@ -49,8 +49,8 @@ def main():
             continue
 
         # FOR TESTING
-        if site_info['icao'] != 'EGGD':
-            continue
+        # if site_info['icao'] != 'EGGD':
+        #     continue
 
         print(f'Processing {site_info["icao"]}...')
 
