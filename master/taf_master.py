@@ -14,6 +14,7 @@ import generate.generate_taf as ge
 
 # Define environment constants
 TAF_START = os.environ['TAF_START']
+SORTED_DATA = os.environ['SORTED_DATA']
 
 
 def main():
@@ -21,11 +22,11 @@ def main():
     Calls other modules to generate TAFs.
     """
     # Define path that data will be stored in
-    d_file = f'{co.TEST_DIR}/{TAF_START}'
+    d_file = f'{SORTED_DATA}/{TAF_START}'
 
     # If data already extracted, use that
     if os.path.exists(d_file):
-        with open(f'{co.TEST_DIR}/{TAF_START}', 'rb') as file_object:
+        with open(f'{SORTED_DATA}/{TAF_START}', 'rb') as file_object:
             unpickler = pickle.Unpickler(file_object)
             param_dfs_missing_times, airport_info, taf_dts = unpickler.load()
 
@@ -37,7 +38,7 @@ def main():
          airport_info, taf_dts) = ex.get_imp_data(TAF_START)
 
         # Save as csv file for testing
-        with open(f'{co.TEST_DIR}/{TAF_START}', 'wb') as f_object:
+        with open(f'{SORTED_DATA}/{TAF_START}', 'wb') as f_object:
             pickle.dump([param_dfs_missing_times, airport_info, taf_dts],
                         f_object)
 
