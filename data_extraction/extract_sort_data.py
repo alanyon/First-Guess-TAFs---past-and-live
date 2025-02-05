@@ -322,7 +322,7 @@ def get_imp_data(taf_start):
     blend_str = blend_dt.strftime('%Y%m%dT%H')
 
     # Load in airport info
-    airport_info = pd.read_csv(co.AIRPORT_INFO_FILE, header=0)
+    airport_info = pd.read_csv(AIRPORT_INFO_FILE, header=0)
 
     # Get datetimes to cover all TAFs (max 30 hours)
     airport_info, taf_dts = get_taf_hrs(airport_info, taf_start_dt)
