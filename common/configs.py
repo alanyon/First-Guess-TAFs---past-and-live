@@ -1,11 +1,6 @@
 """
 Constants used throughout TAF generation code.
 """
-# TEST_DIR = '/data/users/alanyon/tafs/improver/test_data_2' # For testing
-# DATA_DIR = '/scratch/alanyon/tafs/improver_test' # For testing
-TEST_DIR = '/data/users/alanyon/tafs/improver/test_data'
-DATA_DIR = '/scratch/alanyon/tafs/improver'
-MASS_DIR = 'moose:/adhoc/users/ppdev/OS45.2'
 # Define a sentinel value for errors in multiprocessing
 ERROR_SENTINEL = "ERROR_OCCURRED"
 IMPROVER_PARAMETERS = {

@@ -45,6 +45,10 @@ import common.calculations as ca
 import common.checks as ch
 import common.configs as co
 
+# Define environment constants
+DATA_DIR = os.environ['DATA_DIR']
+MASS_DIR = os.environ['MASS_DIR']
+
 # To stop pandas warnings
 iris.FUTURE.pandas_ndim = True
 pd.options.mode.chained_assignment = None
@@ -189,8 +193,8 @@ def extract_data(blend_str):
     """
     # Extract tar file from MASS
     moo_cmd = subprocess.run(
-        ['moo', 'get', f'{co.MASS_DIR}/mix_suite_{blend_str}00Z/spot.tar',
-         f'{co.DATA_DIR}/{blend_str}00Z_spot.tar'],
+        ['moo', 'get', f'{MASS_DIR}/mix_suite_{blend_str}00Z/spot.tar',
+         f'{DATA_DIR}/{blend_str}00Z_spot.tar'],
          check=False, capture_output=True, encoding="utf-8"
     )
 
@@ -201,7 +205,7 @@ def extract_data(blend_str):
 
     # Get list of filenames from tar file
     list_files_cmd = subprocess.run(
-        ['tar', '-tf', f'{co.DATA_DIR}/{blend_str}00Z_spot.tar'], check=True,
+        ['tar', '-tf', f'{DATA_DIR}/{blend_str}00Z_spot.tar'], check=True,
          capture_output=True, encoding="utf-8")
     fnames_in_tar = list_files_cmd.stdout.splitlines()
 
@@ -246,18 +250,18 @@ def extract_data(blend_str):
         fnames_to_extract.extend(param_fnames_arch)
 
     # Make directory to put files in
-    dest = f'{co.DATA_DIR}/{blend_str}00Z'
+    dest = f'{DATA_DIR}/{blend_str}00Z'
     if not os.path.exists(dest):
         os.makedirs(dest)
 
     # Write files to query file
-    fetch_files_file = f'{co.DATA_DIR}/{blend_str}00Z_query_file'
+    fetch_files_file = f'{DATA_DIR}/{blend_str}00Z_query_file'
     with open(fetch_files_file, "w", encoding="utf-8") as f:
         f.write("\n".join(fnames_to_extract))
 
     # Untar all files
     tar_cmd = subprocess.run(
-        ['tar', '-xC', dest, '-f', f'{co.DATA_DIR}/{blend_str}00Z_spot.tar',
+        ['tar', '-xC', dest, '-f', f'{DATA_DIR}/{blend_str}00Z_spot.tar',
          f'--files-from={fetch_files_file}',
          '--strip-components=1'],
          check=False, capture_output=True, encoding="utf-8"
@@ -391,7 +395,7 @@ def get_imp_data(taf_start):
     queue.close()
 
     # Remove blend time data files
-    os.system(f'rm -r {co.DATA_DIR}/{blend_str}*')
+    os.system(f'rm -r {DATA_DIR}/{blend_str}*')
 
     return param_dfs_missing_times, airport_info, taf_dts
 
@@ -645,7 +649,7 @@ def load_filter_data(param, sites_con, perc_con, taf_dts, fname, blend_str):
         for minutes in ['45', '30', '15', '00']:
 
             # Define file and test if it exists
-            tdt_file = (f'{co.DATA_DIR}/{blend_str}00Z/{fname}{tdt_str}'
+            tdt_file = (f'{DATA_DIR}/{blend_str}00Z/{fname}{tdt_str}'
                         f'-B{blend_str}{minutes}Z-{param}.nc')
             if not os.path.exists(tdt_file):
                 continue
