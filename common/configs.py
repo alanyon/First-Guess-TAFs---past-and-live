@@ -87,8 +87,6 @@ PRECIP_CODES = ['+SHSN', '+SN', '+SHRASN', '+RASN', '+TSRA', '+SHGS', '+SHRA',
                 '-TSRA', '-SHGS', '-SHRA', '-RA', '-DZ']
 TS_CODES = ['+TSRA', 'TSRA', '-TSRA']
 HVY_CODES = ['+SHSN', '+SN', '+SHRASN', '+RASN', '+SHGS', '+SHRA', '+RA']
-AIRPORT_INFO_FILE = ('/home/h04/alanyon/cylc-run/improver_tafs/bin/'
-                     'first_guess_TAFs/improver/data_extraction/taf_info.csv')
 
 # Ordering priority of change groups
 PRIORITY_DICT = {'base': 0, 'BECMG': 1, 'TEMPO': 2, 'PROB40': 3,

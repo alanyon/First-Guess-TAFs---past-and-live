@@ -48,6 +48,7 @@ import common.configs as co
 # Define environment constants
 DATA_DIR = os.environ['DATA_DIR']
 MASS_DIR = os.environ['MASS_DIR']
+AIRPORT_INFO_FILE = os.environ['AIRPORT_INFO_FILE']
 
 # To stop pandas warnings
 iris.FUTURE.pandas_ndim = True
