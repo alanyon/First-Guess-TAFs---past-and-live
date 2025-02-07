@@ -47,7 +47,7 @@ def main():
         site_df = ba.adjust_site_df(site_df)
 
         # For distinguishing London city long TAF from short TAF
-        if site_info['name'] == 'London City (long)':
+        if site_info['airport_name'] == 'London City (long)':
             icao = 'EGLC_long'
         else:
             icao = site_info['icao']
