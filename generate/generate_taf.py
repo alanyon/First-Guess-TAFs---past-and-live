@@ -221,4 +221,6 @@ def taf_gen(site_data):
     best_option = min(shortest_tafs, key=lambda x: x['score'])
 
     # Write TAF for best option
-    wt.taf_text(site_data, best_option['groups'])
+    nice_taf, ver_taf, bench = wt.taf_text(site_data, best_option['groups'])
+
+    return nice_taf, ver_taf, bench

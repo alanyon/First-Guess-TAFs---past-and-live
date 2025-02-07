@@ -5,6 +5,7 @@ Functions:
     main: Main function.
 """
 import os
+import pandas as pd
 import pickle
 
 import common.configs as co
@@ -15,59 +16,32 @@ import generate.generate_taf as ge
 # Define environment constants
 TAF_START = os.environ['TAF_START']
 SORTED_DATA = os.environ['SORTED_DATA']
+ICAO = os.environ['ICAO']
 
 
 def main():
     """
     Calls other modules to generate TAFs.
     """
-    # Define path that data will be stored in
-    d_file = f'{SORTED_DATA}/{TAF_START}'
+    # Directory containing IMPROVER data files
+    pickle_dir = f'{SORTED_DATA}/{TAF_START}'
 
-    # If data already extracted, use that
-    if os.path.exists(d_file):
-        with open(f'{SORTED_DATA}/{TAF_START}', 'rb') as file_object:
-            unpickler = pickle.Unpickler(file_object)
-            param_dfs_missing_times, airport_info, taf_dts = unpickler.load()
+    # If no directory exists, exit
+    if not os.path.exists(pickle_dir):
+        print(f'No data found for {TAF_START}. Exiting...')
+        return
 
-    # Otherwise, need to extract data from MASS
-    else:
+    # Load IMPROVER data from pickle file
+    site_df = pd.read_pickle(f'{pickle_dir}/{ICAO}.pkl')
 
-        # Extract all relevant IMPROVER data, and required TAF variables
-        (param_dfs_missing_times,
-         airport_info, taf_dts) = ex.get_imp_data(TAF_START)
+    # Generate TAF
+    nice_taf, ver_taf, bench = ge.taf_gen(site_df)
 
-        # Save as csv file for testing
-        with open(f'{SORTED_DATA}/{TAF_START}', 'wb') as f_object:
-            pickle.dump([param_dfs_missing_times, airport_info, taf_dts],
-                        f_object)
-
-    # Filter data for each airport and collect
-    for _, site_info in airport_info.iterrows():
-
-        # Ignore defence for now
-        if site_info['rules'] == 'defence':
-            continue
-
-        # # FOR TESTING
-        # if site_info['icao'] != 'EGEC':
-        #     continue
-
-        print(f'Processing {site_info["icao"]}...')
-
-        # Get data for airport
-        site_df = ex.get_site_data(param_dfs_missing_times, site_info, taf_dts)
-
-        # If no data found, move to next airport
-        if site_df.empty:
-            continue
-
-        # Predict busts and adjust data accordingly
-        site_df = ba.adjust_site_df(site_df)
-
-        # Generate TAF
-        ge.taf_gen(site_df)
+    # Save to pickle files
+    with open(f'{pickle_dir}/{ICAO}_tafs.pkl', 'wb') as f:
+        pickle.dump([nice_taf, ver_taf, bench], f)
 
 
 if __name__ == "__main__":
+
     main()
