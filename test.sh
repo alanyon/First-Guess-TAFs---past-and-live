@@ -1,6 +1,6 @@
 #!/bin/bash -l
 CODE_DIR=~andre.lanyon/first_guess_tafs/past_and_live
-export TAF_START=2025020612
+export TAF_START=2025020700
 export OUT_DIR=~andre.lanyon/public_html/tafs
 export PYTHONPATH=$PYTHONPATH:$CODE_DIR
 export ML_DIR=/data/users/andre.lanyon/tafs/ml_pickles

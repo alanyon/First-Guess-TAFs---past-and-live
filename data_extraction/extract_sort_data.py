@@ -193,9 +193,8 @@ def extract_data(blend_str):
         blend_str (str): String containing blend date.
     """
     # Extract tar file from MASS
-    print('here', f'{MASS_DIR}/mix_suite_{blend_str}00Z/spot.tar',
-         f'{DATA_DIR}/{blend_str}00Z_spot.tar')
-    print('data dir', DATA_DIR)
+    print('mass', f'{MASS_DIR}/mix_suite_{blend_str}00Z/spot.tar')
+    print('scratch', f'{DATA_DIR}/{blend_str}00Z_spot.tar')
     moo_cmd = subprocess.run(
         ['moo', 'get', f'{MASS_DIR}/mix_suite_{blend_str}00Z/spot.tar',
          f'{DATA_DIR}/{blend_str}00Z_spot.tar'],
