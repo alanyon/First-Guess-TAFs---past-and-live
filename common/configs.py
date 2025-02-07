@@ -104,3 +104,10 @@ PARAM_COLS = [
     'month', 'day', 'hour', 'lead', 'vis_cat_30.0', 'vis_cat_50.0', 
     'vis_cat_70.0', 'cld_cat_30.0', 'cld_cat_50.0', 'cld_cat_70.0'
 ]
+
+# Bench strings
+BENCHES = ['civil_av1', 'civil_av2', 'civil_av3', 'heathrow_om',
+           'heathrow_som', 'aldergrove', 'team_leader', 'defence']
+
+# Add empty string to benches to cover all benches
+ALL_BENCHES = BENCHES + ['']

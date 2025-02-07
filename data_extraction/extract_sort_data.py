@@ -193,8 +193,6 @@ def extract_data(blend_str):
         blend_str (str): String containing blend date.
     """
     # Extract tar file from MASS
-    print('mass', f'{MASS_DIR}/mix_suite_{blend_str}00Z/spot.tar')
-    print('scratch', f'{DATA_DIR}/{blend_str}00Z_spot.tar')
     moo_cmd = subprocess.run(
         ['moo', 'get', f'{MASS_DIR}/mix_suite_{blend_str}00Z/spot.tar',
          f'{DATA_DIR}/{blend_str}00Z_spot.tar'],
@@ -489,7 +487,6 @@ def get_site_data(param_dfs_missing_times, site_info, taf_dts):
 
     # Return empty dataframe valid TAF datetimes found
     if not site_dts:
-        print('TAF not due')
         return pd.DataFrame()
 
     # Loop through all parameter dataframes, take out revevant data and
@@ -498,7 +495,6 @@ def get_site_data(param_dfs_missing_times, site_info, taf_dts):
 
         # Check for any missing data
         if any(m_time in site_dts for m_time in missing_times):
-            print('Missing data')
             return pd.DataFrame()
 
         # Subset data using opening hours of airport and site number
@@ -519,7 +515,6 @@ def get_site_data(param_dfs_missing_times, site_info, taf_dts):
 
     # Abandon if dataframe is empty
     if site_df.empty:
-        print('No data')
         return pd.DataFrame()
 
     # Add time info to dataframe

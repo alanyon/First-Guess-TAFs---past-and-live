@@ -23,22 +23,22 @@ def main():
     """
     Calls other modules to generate TAFs.
     """
-    # Directory containing IMPROVER data files
-    pickle_dir = f'{SORTED_DATA}/{TAF_START}'
+    # File containing IMPROVER data
+    pickle_file = f'{SORTED_DATA}/{TAF_START}/{ICAO}.pkl'
 
-    # If no directory exists, exit
-    if not os.path.exists(pickle_dir):
-        print(f'No data found for {TAF_START}. Exiting...')
+    # If no pivkle file exists, exit
+    if not os.path.exists(pickle_file):
+        print(f'No data found for {ICAO}. Exiting...')
         return
 
     # Load IMPROVER data from pickle file
-    site_df = pd.read_pickle(f'{pickle_dir}/{ICAO}.pkl')
+    site_df = pd.read_pickle(f'{pickle_file}')
 
-    # Generate TAF
+    # Generate TAF and collect bench
     nice_taf, ver_taf, bench = ge.taf_gen(site_df)
 
-    # Save to pickle files
-    with open(f'{pickle_dir}/{ICAO}_tafs.pkl', 'wb') as f:
+    # Save TAF types and bench to pickle file
+    with open(f'{pickle_file}_tafs.pkl', 'wb') as f:
         pickle.dump([nice_taf, ver_taf, bench], f)
 
 
