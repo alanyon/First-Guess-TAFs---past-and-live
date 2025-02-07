@@ -46,8 +46,14 @@ def main():
         # Predict busts and adjust data accordingly
         site_df = ba.adjust_site_df(site_df)
 
+        # For distinguishing London city long TAF from short TAF
+        if site_info['name'] == 'London City (long)':
+            icao = 'EGLC_long'
+        else:
+            icao = site_info['icao']
+        
         # Save data to pickle file
-        with open(f'{pickle_dir}/{site_info["icao"]}.pkl', 'wb') as f:
+        with open(f'{pickle_dir}/{icao}.pkl', 'wb') as f:
             pickle.dump(site_df, f)
 
 
