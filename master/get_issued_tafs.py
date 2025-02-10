@@ -53,7 +53,8 @@ def main():
             bench = bench + '_'
 
         # File name of first guess TAF file
-        fg_taf_fname = f'{DATE_OUT_DIR}/{VALID_TIME}Z_{bench}improver.txt'
+        fg_taf_fname = (f'{DATE_OUT_DIR}/{VALID_TIME}Z_{bench}'
+                        'improver_no_obs.txt')
 
          # File name of issued TAFs to be displayed on html page
         is_taf_fname = f'{DATE_OUT_DIR}/{VALID_TIME}Z_{bench}issue.txt'
