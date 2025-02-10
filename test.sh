@@ -1,6 +1,6 @@
 #!/bin/bash -l
 CODE_DIR=~andre.lanyon/first_guess_tafs/past_and_live
-export TAF_START=2025020709
+export TAF_START=2025021000
 export OUT_DIR=~andre.lanyon/public_html/tafs
 export PYTHONPATH=$PYTHONPATH:$CODE_DIR
 export ML_DIR=/data/users/andre.lanyon/tafs/ml_pickles
@@ -16,9 +16,9 @@ conda activate default_clone
 
 # Navigate to code directory and run code
 cd ${CODE_DIR}
-# python master/extract_master.py
-# python master/taf_master.py
-# python master/save_tafs.py
+python master/extract_master.py
+python master/taf_master.py
+python master/save_tafs.py
 python master/get_issued_tafs.py
 
 # Deactivate environment

@@ -46,8 +46,8 @@ def main():
             nice_taf, ver_taf, bench = pickle.load(f)
 
         # Write to txt files
-        bench_file = f'{output_dir}/{taf_time}Z_{bench}_improver.txt'
-        ver_file = f'{output_dir}/{taf_time}Z_verification.txt'
+        bench_file = f'{output_dir}/{taf_time}Z_{bench}_improver_no_obs.txt'
+        ver_file = f'{output_dir}/{taf_time}Z_verification_no_obs.txt'
 
         # Write out to text files
         with open(bench_file, 'a', encoding='utf-8') as b_file:

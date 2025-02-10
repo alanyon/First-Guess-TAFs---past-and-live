@@ -308,28 +308,6 @@ def taf_text(site_data, bases_changes):
 
     return nice_taf, ver_taf, site_data.attrs['bench']
 
-    # # Write to txt files
-    # date_dir = site_data.attrs['taf_start'].strftime('%Y%m%d')
-    # taf_time = site_data.attrs['taf_start'].strftime('%H%MZ')
-    # dir_path = f'{OUT_DIR}/output/{date_dir}'
-    # bench = site_data.attrs['bench']
-    # file_path_bench = f'{dir_path}/{taf_time}_{bench}_improver_issue.txt'
-    # file_path_ver = f'{dir_path}/{taf_time}_verification.txt'
-
-    # # Create a new output directory and update html page if necessary
-    # if not os.path.exists(dir_path):
-    #     os.mkdir(dir_path)
-    #     update_html(date_dir)
-
-    # # Write out to appropriate text file
-    # with open(file_path_bench, 'a', encoding='utf-8') as b_file:
-    #     b_file.write(nice_taf)
-
-    # # Create verification-friendly TAF and add to txt file
-    # ver_taf = ver_format(taf_str, site_data)
-    # with open(file_path_ver, 'a', encoding='utf-8') as v_file:
-    #     v_file.write(ver_taf)
-
 
 def update_html(date):
     """
